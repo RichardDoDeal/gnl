@@ -1,0 +1,6 @@
+[submodule "intra-uuid-7690d94e-12f4-4ae0-9bd4-711513fc0ad9-3358270"]
+	path = intra-uuid-7690d94e-12f4-4ae0-9bd4-711513fc0ad9-3358270
+	url = git@vogsphere.kzn.21-school.ru:vogsphere/intra-uuid-7690d94e-12f4-4ae0-9bd4-711513fc0ad9-3358270
+[submodule "libft"]
+	path = libft
+	url = git@vogsphere.kzn.21-school.ru:vogsphere/intra-uuid-7690d94e-12f4-4ae0-9bd4-711513fc0ad9-3358270
