@@ -1,6 +1,25 @@
 
 #include "get_next_line.h"
 
+void	*ft_memset(void *b, int c, size_t len)
+{
+	char *start;
+
+	start = (char *)b;
+	while (len > 0)
+	{
+		*start = (char)c;
+		len--;
+		start++;
+	}
+	return (b);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
+}
+
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	char *dest;

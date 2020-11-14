@@ -54,19 +54,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/mamahali/clion-2020.2.4/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /Users/mamahali/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /home/mamahali/clion-2020.2.4/bin/cmake/linux/bin/cmake -E rm -f
+RM = /Users/mamahali/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mamahali/Documents/school21/Projects/gnl
+CMAKE_SOURCE_DIR = /Users/mamahali/Desktop/get_next_line
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mamahali/Documents/school21/Projects/gnl/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/mamahali/Desktop/get_next_line/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/get_next_line.dir/depend.make
@@ -79,42 +79,42 @@ include CMakeFiles/get_next_line.dir/flags.make
 
 CMakeFiles/get_next_line.dir/src/get_next_line.c.o: CMakeFiles/get_next_line.dir/flags.make
 CMakeFiles/get_next_line.dir/src/get_next_line.c.o: ../src/get_next_line.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mamahali/Documents/school21/Projects/gnl/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/get_next_line.dir/src/get_next_line.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/src/get_next_line.c.o   -c /home/mamahali/Documents/school21/Projects/gnl/src/get_next_line.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mamahali/Desktop/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/get_next_line.dir/src/get_next_line.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/src/get_next_line.c.o   -c /Users/mamahali/Desktop/get_next_line/src/get_next_line.c
 
 CMakeFiles/get_next_line.dir/src/get_next_line.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/get_next_line.dir/src/get_next_line.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/mamahali/Documents/school21/Projects/gnl/src/get_next_line.c > CMakeFiles/get_next_line.dir/src/get_next_line.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mamahali/Desktop/get_next_line/src/get_next_line.c > CMakeFiles/get_next_line.dir/src/get_next_line.c.i
 
 CMakeFiles/get_next_line.dir/src/get_next_line.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/get_next_line.dir/src/get_next_line.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/mamahali/Documents/school21/Projects/gnl/src/get_next_line.c -o CMakeFiles/get_next_line.dir/src/get_next_line.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mamahali/Desktop/get_next_line/src/get_next_line.c -o CMakeFiles/get_next_line.dir/src/get_next_line.c.s
 
 CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.o: CMakeFiles/get_next_line.dir/flags.make
 CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.o: ../src/get_next_line_utils.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mamahali/Documents/school21/Projects/gnl/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.o   -c /home/mamahali/Documents/school21/Projects/gnl/src/get_next_line_utils.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mamahali/Desktop/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.o   -c /Users/mamahali/Desktop/get_next_line/src/get_next_line_utils.c
 
 CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/mamahali/Documents/school21/Projects/gnl/src/get_next_line_utils.c > CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mamahali/Desktop/get_next_line/src/get_next_line_utils.c > CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.i
 
 CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/mamahali/Documents/school21/Projects/gnl/src/get_next_line_utils.c -o CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mamahali/Desktop/get_next_line/src/get_next_line_utils.c -o CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.s
 
 CMakeFiles/get_next_line.dir/main.c.o: CMakeFiles/get_next_line.dir/flags.make
 CMakeFiles/get_next_line.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mamahali/Documents/school21/Projects/gnl/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/get_next_line.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/main.c.o   -c /home/mamahali/Documents/school21/Projects/gnl/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mamahali/Desktop/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/get_next_line.dir/main.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/get_next_line.dir/main.c.o   -c /Users/mamahali/Desktop/get_next_line/main.c
 
 CMakeFiles/get_next_line.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/get_next_line.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/mamahali/Documents/school21/Projects/gnl/main.c > CMakeFiles/get_next_line.dir/main.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/mamahali/Desktop/get_next_line/main.c > CMakeFiles/get_next_line.dir/main.c.i
 
 CMakeFiles/get_next_line.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/get_next_line.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/mamahali/Documents/school21/Projects/gnl/main.c -o CMakeFiles/get_next_line.dir/main.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/mamahali/Desktop/get_next_line/main.c -o CMakeFiles/get_next_line.dir/main.c.s
 
 # Object files for target get_next_line
 get_next_line_OBJECTS = \
@@ -130,7 +130,7 @@ get_next_line: CMakeFiles/get_next_line.dir/src/get_next_line_utils.c.o
 get_next_line: CMakeFiles/get_next_line.dir/main.c.o
 get_next_line: CMakeFiles/get_next_line.dir/build.make
 get_next_line: CMakeFiles/get_next_line.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mamahali/Documents/school21/Projects/gnl/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable get_next_line"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/mamahali/Desktop/get_next_line/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable get_next_line"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/get_next_line.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -143,6 +143,6 @@ CMakeFiles/get_next_line.dir/clean:
 .PHONY : CMakeFiles/get_next_line.dir/clean
 
 CMakeFiles/get_next_line.dir/depend:
-	cd /home/mamahali/Documents/school21/Projects/gnl/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mamahali/Documents/school21/Projects/gnl /home/mamahali/Documents/school21/Projects/gnl /home/mamahali/Documents/school21/Projects/gnl/cmake-build-debug /home/mamahali/Documents/school21/Projects/gnl/cmake-build-debug /home/mamahali/Documents/school21/Projects/gnl/cmake-build-debug/CMakeFiles/get_next_line.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/mamahali/Desktop/get_next_line/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/mamahali/Desktop/get_next_line /Users/mamahali/Desktop/get_next_line /Users/mamahali/Desktop/get_next_line/cmake-build-debug /Users/mamahali/Desktop/get_next_line/cmake-build-debug /Users/mamahali/Desktop/get_next_line/cmake-build-debug/CMakeFiles/get_next_line.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/get_next_line.dir/depend
 

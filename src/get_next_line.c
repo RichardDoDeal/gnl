@@ -30,6 +30,23 @@ static size_t get_len()
 }
 */
 
+static char	*get_word(size_t b_count)
+{
+	char 	*p_buf;
+	size_t	len;
+	char 	*res;
+
+	len = 0;
+	p_buf = buf;
+	while (*p_buf != '\n' || len <= BUFFER_SIZE)
+	{
+		len++;
+		p_buf++;
+	}
+	res = ft_substr(buf, 0, len);
+	return (res);
+}
+
 int get_next_line(int fd, char **line)
 {
 	int res;
@@ -38,8 +55,9 @@ int get_next_line(int fd, char **line)
 	res = read(fd, &buf, BUFFER_SIZE);
 	if (res == -1)
 		return (-1);
-	buf[res] = '\0';
-	*line = ft_substr(buf, 0, BUFFER_SIZE);
+	//buf[res] = '\0';
+	//*line = ft_substr(buf, 0, BUFFER_SIZE);
+	*line = get_word(res);
 	res = res < 0 ? -1 : !!res;
 	return (res);
 }
