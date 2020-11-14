@@ -3,26 +3,41 @@
 #include <ctype.h>
 #include "../src/get_next_line.h"
 
-static const char *answer[3] = {
-		"test_one", "test_two",""
+static const char *answer_one_line[] = {
+		"test_one"
 };
 
-START_TEST (get_next_line_base_input1)
+static const char *answer_two_line[] = {
+		"test_one", "test_two", ""
+};
+
+START_TEST (get_next_line_one_line)
 	{
-	char *s = malloc(sizeof(char) * 9);
-	if(!s)
-	{
-		ck_abort_msg("malloc failed not Error!");
-	}
-	int fd = open("test.txt",O_RDONLY);
+	char *s = NULL;
+	int fd = open("test_one_line.txt", O_RDONLY);
 	int res;
-	while((res = get_next_line(fd, &s)) == 1)
-	{
-		ck_assert_str_eq(s, answer[_i]);
-	}
-	ck_assert_int_eq(res, 0);
+	ck_assert_int_gt(fd, -1);
+	res = get_next_line(fd, &s);
+	ck_assert_str_eq(s, answer_one_line[0]);
+	ck_assert_int_gt(res, 0);
 	close(fd);
 	free(s);
+	}
+END_TEST
+
+START_TEST (get_next_line_two_line)
+	{
+		char *s = NULL;
+		int fd = open("test_two_line.txt", O_RDONLY);
+		int res;
+		ck_assert_int_gt(fd, -1);
+		while((res = get_next_line(fd, &s)))
+		{
+			ck_assert_str_eq(s, answer_one_line[_i]);
+		}
+		ck_assert_int_gt(res, 0);
+		close(fd);
+		free(s);
 	}
 END_TEST
 
@@ -36,7 +51,8 @@ Suite * ft_get_next_line_suite(void)
 	/* Core test case */
 	tc_core = tcase_create("Core");
 
-	tcase_add_test(tc_core, get_next_line_base_input1);
+	tcase_add_test(tc_core, get_next_line_one_line);
+	tcase_add_test(tc_core, get_next_line_two_line);
 	suite_add_tcase(s, tc_core);
 	return s;
 }
