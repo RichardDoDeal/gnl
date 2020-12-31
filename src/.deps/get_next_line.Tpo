@@ -1,5 +1,5 @@
-check_get_next_line-check_get_next_line.o: check_get_next_line.c \
- /usr/include/stdc-predef.h /usr/include/stdlib.h \
+get_next_line.lo: get_next_line.c /usr/include/stdc-predef.h \
+ get_next_line.h /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -39,18 +39,7 @@ check_get_next_line-check_get_next_line.o: check_get_next_line.c \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/check.h \
- /usr/include/string.h \
- /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /usr/include/strings.h \
- /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
- /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /usr/include/check_stdint.h \
- /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h /usr/include/ctype.h \
- ../src/get_next_line.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
@@ -64,6 +53,8 @@ check_get_next_line-check_get_next_line.o: check_get_next_line.c \
  /usr/include/x86_64-linux-gnu/bits/fcntl2.h
 
 /usr/include/stdc-predef.h:
+
+get_next_line.h:
 
 /usr/include/stdlib.h:
 
@@ -152,34 +143,6 @@ check_get_next_line-check_get_next_line.o: check_get_next_line.c \
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib.h:
-
-/usr/include/check.h:
-
-/usr/include/string.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/include/strings.h:
-
-/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
-
-/usr/include/x86_64-linux-gnu/bits/string_fortified.h:
-
-/usr/include/check_stdint.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/ctype.h:
-
-../src/get_next_line.h:
 
 /usr/include/unistd.h:
 

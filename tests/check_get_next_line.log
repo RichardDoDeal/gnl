@@ -1,6 +1,5 @@
 Running suite(s): get_next_line_base
-50%: Checks: 2, Failures: 1, Errors: 0
-check_get_next_line.c:36:F:Core:get_next_line_two_line:0: Assertion 's == answer_one_line[_i]' failed: s == " test_one
- test_two
-", answer_one_line[_i] == "test_one"
+0%: Checks: 2, Failures: 0, Errors: 2
+check_get_next_line.c:19:E:Core:get_next_line_one_line:0: (after this point) Received signal 11 (Segmentation fault)
+check_get_next_line.c:33:E:Core:get_next_line_two_line:0: (after this point) Received signal 11 (Segmentation fault)
 FAIL check_get_next_line (exit status: 1)

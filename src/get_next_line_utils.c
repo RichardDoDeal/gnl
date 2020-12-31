@@ -1,91 +1,6 @@
 
 #include "get_next_line.h"
 
-void	*ft_memset(void *b, int c, size_t len)
-{
-	char *start;
-
-	start = (char *)b;
-	while (len > 0)
-	{
-		*start = (char)c;
-		len--;
-		start++;
-	}
-	return (b);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
-
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	char *dest;
-	char *source;
-
-	if (dst == NULL && src == NULL && len > 0)
-		return (NULL);
-	dest = (char *)dst;
-	source = (char *)src;
-	if (dest > source)
-	{
-		dest += len - 1;
-		source += len - 1;
-		while (len--)
-			*dest-- = *source--;
-	}
-	else
-		while (len--)
-			*dest++ = *source++;
-	return (dst);
-}
-
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
-{
-	char *dest;
-	char *source;
-	char sb;
-
-	if ((dst == NULL && src == NULL) || n == 0)
-		return (NULL);
-	sb = (char)c;
-	dest = (char *)dst;
-	source = (char *)src;
-	while (1)
-	{
-		*dest = *source;
-		if (*dest == sb)
-			return (dest + 1);
-		dest++;
-		source++;
-		n--;
-		if (n == 0)
-			break ;
-	}
-	return (NULL);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	char *source;
-	char *dest;
-
-	if (dst == NULL && src == NULL)
-		return (dst);
-	source = (char *)src;
-	dest = dst;
-	while (n > 0)
-	{
-		*dest = *source;
-		source++;
-		dest++;
-		n--;
-	}
-	return (dst);
-}
-
 size_t	ft_strlen(const char *str)
 {
 	size_t count;
@@ -122,5 +37,34 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	while (len-- > 0 && *(s + start))
 		*iter++ = *(s + start++);
 	*iter = '\0';
+	return (res);
+}
+
+char	*ft_strjoin_free_first(char *s1, char *s2)
+{
+	char	*res;
+	size_t	len;
+	size_t	len_s1;
+	size_t	len_s2;
+
+	len_s1 = 0;
+	len_s2 = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
+	if (!(res = malloc(len * sizeof(char))))
+		return (NULL);
+	while (s1[len_s1])
+	{
+		res[len_s1] = s1[len_s1];
+		len_s1++;
+	}
+	while (s2[len_s2])
+	{
+		res[len_s2 + len_s1] = s2[len_s2];
+		len_s2++;
+	}
+	res[len_s2 + len_s1] = '\0';
+	free(s1);
 	return (res);
 }
