@@ -6,7 +6,7 @@
 /*   By: rishat <rishat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 19:38:18 by mamahali          #+#    #+#             */
-/*   Updated: 2020/12/31 13:54:46 by rishat           ###   ########.fr       */
+/*   Updated: 2021/01/01 19:09:00 by rishat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*buf;
 
-int			save_lines(char **line)
+static int			save_line(char **line)
 {
 	size_t		len;
 	char		*temp;
@@ -31,7 +31,7 @@ int			save_lines(char **line)
 	return (1);
 }
 
-int			search_line(char *buffer)
+static int			search_line(char *buffer)
 {
 	while (*buffer)
 	{
@@ -50,7 +50,11 @@ static int get_line(char **line, int fd)
 
 	if (!(temp_buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
-	flag = search_line(buf);
+	if ((flag = search_line(buf)))
+	{
+		free(temp_buf);
+		return (flag = save_line(line));
+	}
 	while (!flag && (res = read(fd, temp_buf, BUFFER_SIZE)))
 	{
 		if (res < 0)
@@ -63,23 +67,32 @@ static int get_line(char **line, int fd)
 		flag = search_line(buf);
 	}
 	free(temp_buf);
-	flag = save_lines(line);
-	if (flag == -1)
+	if ((flag = save_line(line)) == -1)
 		return (-1);
-	return (res == 0 ? res : !!res);
+	return (res == 0 ? 0 : !!res);
 }
-
+/*
+if (res == 0)
+		return (res);
+	return (flag != -1 ? 1 : -1);
+*/
 int get_next_line(int fd, char **line)
 {
 	int res;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
-		return (-1);	
+		return (-1);
 	if(!buf)
+	{
 		if (!(buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 			return (-1);
+		*buf = '\0';
+	}
 	res = get_line(line, fd);
-	if (res == 0 || res == -1)
+	if ((res == 0 || res == -1) && buf)
+	{
 		free(buf);
+		buf = NULL;
+	}
 	return (res);
 }

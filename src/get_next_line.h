@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 16000
+#define BUFFER_SIZE 2
 #endif
 int		get_next_line(int fd, char **line);
 void	*ft_memmove(void *dst, const void *src, size_t len);
@@ -14,5 +14,4 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin_free_first(char *s1, char *s2);
 size_t	ft_strlen(const char *str);
-//void	ft_bzero(void *s, size_t n);
 #endif

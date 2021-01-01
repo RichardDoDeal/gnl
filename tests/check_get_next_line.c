@@ -19,7 +19,7 @@ START_TEST (get_next_line_one_line)
 	ck_assert_int_gt(fd, -1);
 	res = get_next_line(fd, &s);
 	ck_assert_str_eq(s, answer_one_line[0]);
-	ck_assert_int_gt(res, 0);
+	ck_assert_int_eq(res, 0);
 	close(fd);
 	free(s);
 	}
@@ -30,12 +30,48 @@ START_TEST (get_next_line_two_line)
 		char *s = NULL;
 		int fd = open("test_two_line.txt", O_RDONLY);
 		int res;
+		int i = 0;
 		ck_assert_int_gt(fd, -1);
 		while((res = get_next_line(fd, &s)))
 		{
-			ck_assert_str_eq(s, answer_one_line[_i]);
+			ck_assert_str_eq(s, answer_two_line[i]);
+			i++;
 		}
-		ck_assert_int_gt(res, 0);
+		ck_assert_int_eq(res, 0);
+		close(fd);
+		free(s);
+	}
+END_TEST
+
+START_TEST (get_next_line_empty_file)
+	{
+		char *s = NULL;
+		int fd = open("empty.txt", O_RDONLY);
+		int res;
+
+		ck_assert_int_gt(fd, -1);
+		while((res = get_next_line(fd, &s)))
+		{
+			ck_assert_str_eq(s, NULL);
+		}
+		ck_assert_int_eq(res, 0);
+		close(fd);
+		free(s);
+	}
+END_TEST
+
+START_TEST (get_next_line_many_newline_file)
+	{
+		char *s = NULL;
+		int fd = open("empty.txt", O_RDONLY);
+		int res;
+
+		ck_assert_int_gt(fd, -1);
+		while((res = get_next_line(fd, &s)))
+		{
+			ck_assert_str_eq(s, NULL);
+		}
+		ck_assert_int_eq(res, 0);
 		close(fd);
 		free(s);
 	}
@@ -53,6 +89,7 @@ Suite * ft_get_next_line_suite(void)
 
 	tcase_add_test(tc_core, get_next_line_one_line);
 	tcase_add_test(tc_core, get_next_line_two_line);
+	tcase_add_test(tc_core, get_next_line_empty_file);
 	suite_add_tcase(s, tc_core);
 	return s;
 }

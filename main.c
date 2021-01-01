@@ -6,7 +6,7 @@
 /*   By: rishat <rishat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 23:14:36 by rishat            #+#    #+#             */
-/*   Updated: 2020/12/31 13:52:05 by rishat           ###   ########.fr       */
+/*   Updated: 2021/01/01 19:13:19 by rishat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,29 @@
 int main()
 {
 	char *s = NULL;
-	int fd = open("test_two_line.txt", O_RDONLY);
+	int fd = open("test_case/emptylines", O_RDONLY);
 	int res;
 
 	while((res = get_next_line(fd, &s)))
-	{		
-		printf("%s",s);
+	{
+		printf("|%s\n",s);
 		free(s);
 	}
+	printf("%s\n",s);
+	free(s);
 	close(fd);
 
+
+	int fd2 = open("test_case/emptylines", O_RDONLY);
+	int res2;
+
+	while((res2 = get_next_line(fd2, &s)))
+	{
+		printf("|%s\n",s);
+		free(s);
+	}
+	printf("%s\n",s);
+	free(s);
+	close(fd2);
 	return (0);
 }
