@@ -6,13 +6,13 @@
 /*   By: rishat <rishat@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 19:38:18 by mamahali          #+#    #+#             */
-/*   Updated: 2021/01/03 19:12:41 by rishat           ###   ########.fr       */
+/*   Updated: 2021/01/03 20:18:26 by rishat           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static t_file	*file;
+static t_file	*g_file;
 
 static int	save_line(char **line, char **buf)
 {
@@ -87,20 +87,20 @@ int			get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (!file)
+	if (!g_file)
 	{
-		if (!(file = malloc(sizeof(t_file))))
+		if (!(g_file = malloc(sizeof(t_file))))
 			return (-1);
-		*file = (t_file){.fd = fd, .buf = NULL, .next = NULL, .prev = NULL};
+		*g_file = (t_file){.fd = fd, .buf = NULL, .next = NULL, .prev = NULL};
 	}
-	file_in = find_file(fd, file);
+	file_in = find_file(fd, g_file);
 	res = get_line(line, file_in);
 	if (res == -1)
-		lst_edit(&file, 0);
+		lst_edit(&g_file, 0);
 	if (res == 0)
 	{
 		lst_edit(&file_in, 1);
-		file = file_in;
+		g_file = file_in;
 	}
 	return (res);
 }

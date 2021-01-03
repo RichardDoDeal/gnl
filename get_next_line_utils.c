@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rishat <rishat@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/03 20:18:49 by rishat            #+#    #+#             */
+/*   Updated: 2021/01/03 20:18:53 by rishat           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -67,57 +78,4 @@ char	*ft_strjoin_free_first(char *s1, char *s2)
 	res[len_s2 + len_s1] = '\0';
 	free(s1);
 	return (res);
-}
-
-t_file	*find_file(int search_fd, t_file *file_now)
-{
-	t_file	*temp;
-
-	while (file_now->prev)
-		file_now = file_now->prev;
-	while (file_now->fd != search_fd)
-	{
-		if (file_now->next == NULL)
-		{
-			temp = file_now;
-			if (!(file_now = (t_file *)malloc(sizeof(t_file))))
-				return (NULL);
-			*file_now = (t_file){.fd = search_fd, .buf = NULL, .next = NULL, .prev = temp};
-			temp->next = file_now;
-			return (file_now);
-		}
-		file_now = file_now->next;
-	}
-	return (file_now);
-}
-
-void	lst_edit(t_file	**file, int mode)
-{
-	t_file			*temp;
-
-	if (!file || !*file)
-		return ;
-	if (mode == 0 && *file)
-	{
-		while ((*file)->prev != NULL)
-			*file = (*file)->prev;
-		while (*file)
-		{
-			temp = (*file)->next;
-			free((*file)->buf);
-			free(*file);
-			*file = temp;
-		}
-	}
-	if (mode == 1 && *file)
-	{
-		if ((*file)->prev)
-			(*file)->prev->next = (*file)->next;
-		if ((*file)->next)
-			(*file)->next->prev = (*file)->prev;
-		temp = ((*file)->prev) ? (*file)->prev : (*file)->next;
-		free((*file)->buf);
-		free(*file);
-		*file = temp;
-	}
 }
