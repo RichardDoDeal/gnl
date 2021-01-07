@@ -45,7 +45,7 @@ static int			search_line(char *buffer)
 	return (0);
 }
 
-static int				exit_with_free_error(char *buf_to_free)
+static int			exit_with_free_error(char *buf_to_free)
 {
 	free(buf_to_free);
 	return (-1);

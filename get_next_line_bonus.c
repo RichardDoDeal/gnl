@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rishat <rishat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mamahali <mamahali@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 19:38:18 by mamahali          #+#    #+#             */
-/*   Updated: 2021/01/03 20:18:26 by rishat           ###   ########.fr       */
+/*   Updated: 2021/01/07 15:00:37 by mamahali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static int	save_line(char **line, char **buf)
 		return (-1);
 	temp = *buf;
 	if (!(*buf = ft_substr(*buf, len + 1, ft_strlen(*buf) - len)))
+	{
+		free(temp);
 		return (-1);
+	}
 	free(temp);
 	return (1);
 }
@@ -51,6 +54,12 @@ static int	search_line(char **buffer)
 	return (0);
 }
 
+static int	exit_with_free_error(char *buf_to_free)
+{
+	free(buf_to_free);
+	return (-1);
+}
+
 static int	get_line(char **line, t_file *file_in)
 {
 	char			*temp_buf;
@@ -64,12 +73,10 @@ static int	get_line(char **line, t_file *file_in)
 	while (flag == 0 && (res = read(file_in->fd, temp_buf, BUFFER_SIZE)))
 	{
 		if (res < 0)
-		{
-			free(temp_buf);
-			return (-1);
-		}
+			return (exit_with_free_error(temp_buf));
 		temp_buf[res] = '\0';
-		file_in->buf = ft_strjoin_free_first(file_in->buf, temp_buf);
+		if (!(file_in->buf = ft_strjoin_free_first(file_in->buf, temp_buf)))
+			return (exit_with_free_error(temp_buf));
 		flag = search_line(&(file_in->buf));
 	}
 	free(temp_buf);
