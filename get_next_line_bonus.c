@@ -5,14 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamahali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/07 15:08:55 by mamahali          #+#    #+#             */
-/*   Updated: 2021/01/07 15:08:56 by mamahali         ###   ########.fr       */
+/*   Created: 2021/01/07 15:24:50 by mamahali          #+#    #+#             */
+/*   Updated: 2021/01/07 15:24:52 by mamahali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-static t_file	*g_file;
 
 static int	save_line(char **line, char **buf)
 {
@@ -89,25 +87,26 @@ static int	get_line(char **line, t_file *file_in)
 
 int			get_next_line(int fd, char **line)
 {
-	int		res;
-	t_file	*file_in;
+	static t_file	*file;
+	int				res;
+	t_file			*file_in;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (!g_file)
+	if (!file)
 	{
-		if (!(g_file = malloc(sizeof(t_file))))
+		if (!(file = malloc(sizeof(t_file))))
 			return (-1);
-		*g_file = (t_file){.fd = fd, .buf = NULL, .next = NULL, .prev = NULL};
+		*file = (t_file){.fd = fd, .buf = NULL, .next = NULL, .prev = NULL};
 	}
-	file_in = find_file(fd, g_file);
+	file_in = find_file(fd, file);
 	res = get_line(line, file_in);
 	if (res == -1)
-		lst_edit(&g_file, 0);
+		lst_edit(&file, 0);
 	if (res == 0)
 	{
 		lst_edit(&file_in, 1);
-		g_file = file_in;
+		file = file_in;
 	}
 	return (res);
 }

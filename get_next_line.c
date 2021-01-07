@@ -5,27 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamahali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/07 15:08:02 by mamahali          #+#    #+#             */
-/*   Updated: 2021/01/07 15:08:06 by mamahali         ###   ########.fr       */
+/*   Created: 2021/01/07 15:27:02 by mamahali          #+#    #+#             */
+/*   Updated: 2021/01/07 15:27:04 by mamahali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*g_buf;
-
-static int			save_line(char **line)
+static int			save_line(char **line, char **buf)
 {
 	size_t		len;
 	char		*temp;
 
 	len = 0;
-	while (g_buf[len] != '\n' && g_buf[len])
+	while ((*buf)[len] != '\n' && (*buf)[len])
 		len++;
-	if (!(*line = ft_substr(g_buf, 0, len)))
+	if (!(*line = ft_substr(*buf, 0, len)))
 		return (-1);
-	temp = g_buf;
-	if (!(g_buf = ft_substr(g_buf, len + 1, ft_strlen(g_buf) - len)))
+	temp = *buf;
+	if (!((*buf) = ft_substr(*buf, len + 1, ft_strlen(*buf) - len)))
 	{
 		free(temp);
 		return (-1);
@@ -51,37 +49,38 @@ static int			exit_with_free_error(char *buf_to_free)
 	return (-1);
 }
 
-static int			get_line(char **line, int fd, int *flag)
+static int			get_line(char **line, int fd, int *flag, char **g_buf)
 {
 	char			*temp_buf;
 	long long		res;
 
 	if (!(temp_buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (-1);
-	if ((*flag = search_line(g_buf)))
+	if ((*flag = search_line(*g_buf)))
 	{
 		free(temp_buf);
-		return (*flag = save_line(line));
+		return (*flag = save_line(line, g_buf));
 	}
 	while (!(*flag) && (res = read(fd, temp_buf, BUFFER_SIZE)))
 	{
 		if (res < 0)
 			return (exit_with_free_error(temp_buf));
 		temp_buf[res] = '\0';
-		if (!(g_buf = ft_strjoin_free_first(g_buf, temp_buf)))
+		if (!(*g_buf = ft_strjoin_free_first(*g_buf, temp_buf)))
 			return (exit_with_free_error(temp_buf));
-		*flag = search_line(g_buf);
+		*flag = search_line(*g_buf);
 	}
 	free(temp_buf);
-	if ((*flag = save_line(line)) == -1)
+	if ((*flag = save_line(line, g_buf)) == -1)
 		return (-1);
 	return (res == 0 ? 0 : !!res);
 }
 
 int					get_next_line(int fd, char **line)
 {
-	int	res;
-	int	flag;
+	int			res;
+	int			flag;
+	static char	*g_buf;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
@@ -91,7 +90,7 @@ int					get_next_line(int fd, char **line)
 			return (-1);
 		*g_buf = '\0';
 	}
-	res = get_line(line, fd, &flag);
+	res = get_line(line, fd, &flag, &g_buf);
 	if ((res == 0 || res == -1) && g_buf)
 	{
 		free(g_buf);
