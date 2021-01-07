@@ -26,7 +26,10 @@ static int			save_line(char **line)
 		return (-1);
 	temp = g_buf;
 	if (!(g_buf = ft_substr(g_buf, len + 1, ft_strlen(g_buf) - len)))
+	{
+		free(temp);
 		return (-1);
+	}
 	free(temp);
 	return (1);
 }
