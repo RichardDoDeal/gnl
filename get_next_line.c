@@ -42,6 +42,12 @@ static int			search_line(char *buffer)
 	return (0);
 }
 
+static int				exit_with_free_error(char *buf_to_free)
+{
+	free(buf_to_free);
+	return (-1);
+}
+
 static int			get_line(char **line, int fd, int *flag)
 {
 	char			*temp_buf;
@@ -57,12 +63,10 @@ static int			get_line(char **line, int fd, int *flag)
 	while (!(*flag) && (res = read(fd, temp_buf, BUFFER_SIZE)))
 	{
 		if (res < 0)
-		{
-			free(temp_buf);
-			return (-1);
-		}
+			return (exit_with_free_error(temp_buf));
 		temp_buf[res] = '\0';
-		g_buf = ft_strjoin_free_first(g_buf, temp_buf);
+		if (!(g_buf = ft_strjoin_free_first(g_buf, temp_buf)))
+			return (exit_with_free_error(temp_buf));
 		*flag = search_line(g_buf);
 	}
 	free(temp_buf);

@@ -58,18 +58,18 @@ char	*ft_strjoin_free_first(char *s1, char *s2)
 	size_t	len_s1;
 	size_t	len_s2;
 
-	len_s1 = 0;
+	len_s1 = -1;
 	len_s2 = 0;
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
 	if (!(res = malloc(len * sizeof(char))))
-		return (NULL);
-	while (s1[len_s1])
 	{
-		res[len_s1] = s1[len_s1];
-		len_s1++;
+		free(s1);
+		return (NULL);
 	}
+	while (s1[++len_s1])
+		res[len_s1] = s1[len_s1];
 	while (s2[len_s2])
 	{
 		res[len_s2 + len_s1] = s2[len_s2];
