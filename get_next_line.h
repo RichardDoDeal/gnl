@@ -24,4 +24,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin_free_first(char *s1, char *s2);
 size_t	ft_strlen(const char *str);
+int		func(long long res, int *flag, char **g_buf, char *temp_buf);
+int		exit_with_free_error(char *buf_to_free);
+int		search_line(char *buffer);
 #endif

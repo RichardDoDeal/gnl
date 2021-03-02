@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static int			save_line(char **line, char **buf)
+static int	save_line(char **line, char **buf)
 {
 	size_t		len;
 	char		*temp;
@@ -20,7 +20,8 @@ static int			save_line(char **line, char **buf)
 	len = 0;
 	while ((*buf)[len] != '\n' && (*buf)[len])
 		len++;
-	if (!(*line = ft_substr(*buf, 0, len)))
+	*line = ft_substr(*buf, 0, len);
+	if (!(*line))
 		return (-1);
 	temp = *buf;
 	if (!((*buf) = ft_substr(*buf, len + 1, ft_strlen(*buf) - len)))
@@ -32,7 +33,7 @@ static int			save_line(char **line, char **buf)
 	return (1);
 }
 
-static int			search_line(char *buffer)
+int	search_line(char *buffer)
 {
 	while (*buffer)
 	{
@@ -43,40 +44,44 @@ static int			search_line(char *buffer)
 	return (0);
 }
 
-static int			exit_with_free_error(char *buf_to_free)
+int	end_func(int *flag, int res)
 {
-	free(buf_to_free);
-	return (-1);
+	if (*flag == -1)
+		return (-1);
+	res = !!res;
+	return (res);
 }
 
-static int			get_line(char **line, int fd, int *flag, char **g_buf)
+static int	get_line(char **line, int fd, int *flag, char **g_buf)
 {
 	char			*temp_buf;
 	long long		res;
 
-	if (!(temp_buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+	temp_buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!temp_buf)
 		return (-1);
-	if ((*flag = search_line(*g_buf)))
+	*flag = search_line(*g_buf);
+	if (*flag)
 	{
 		free(temp_buf);
 		return (*flag = save_line(line, g_buf));
 	}
-	while (!(*flag) && (res = read(fd, temp_buf, BUFFER_SIZE)))
+	if (!(*flag))
+		res = read(fd, temp_buf, BUFFER_SIZE);
+	while (!(*flag) && res)
 	{
-		if (res < 0)
-			return (exit_with_free_error(temp_buf));
-		temp_buf[res] = '\0';
-		if (!(*g_buf = ft_strjoin_free_first(*g_buf, temp_buf)))
-			return (exit_with_free_error(temp_buf));
-		*flag = search_line(*g_buf);
+		if (func(res, flag, g_buf, temp_buf) == -1)
+			return (-1);
+		if (!(*flag))
+			res = read(fd, temp_buf, BUFFER_SIZE);
 	}
 	free(temp_buf);
-	if ((*flag = save_line(line, g_buf)) == -1)
-		return (-1);
-	return (res == 0 ? 0 : !!res);
+	*flag = save_line(line, g_buf);
+	res = end_func(flag, res);
+	return (res);
 }
 
-int					get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	int			res;
 	int			flag;
@@ -86,7 +91,8 @@ int					get_next_line(int fd, char **line)
 		return (-1);
 	if (!g_buf)
 	{
-		if (!(g_buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+		g_buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (!g_buf)
 			return (-1);
 		*g_buf = '\0';
 	}

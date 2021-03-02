@@ -12,9 +12,27 @@
 
 #include "get_next_line.h"
 
+int	func(long long res, int *flag, char **g_buf, char *temp_buf)
+{
+	if (res < 0)
+		return (exit_with_free_error(temp_buf));
+	temp_buf[res] = '\0';
+	*g_buf = ft_strjoin_free_first(*g_buf, temp_buf);
+	if (!(*g_buf))
+		return (exit_with_free_error(temp_buf));
+	*flag = search_line(*g_buf);
+	return (0);
+}
+
+int	exit_with_free_error(char *buf_to_free)
+{
+	free(buf_to_free);
+	return (-1);
+}
+
 size_t	ft_strlen(const char *str)
 {
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	while (*str != '\0')
@@ -40,8 +58,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		*res = '\0';
 		return (res);
 	}
-	s_len = len >= s_len - start ? s_len - start + 1 : len + 1;
-	if (!(res = malloc(s_len * sizeof(char))))
+	if (len >= s_len - start)
+		s_len = s_len - start + 1;
+	else
+		s_len = len + 1;
+	res = malloc(s_len * sizeof(char));
+	if (!res)
 		return (NULL);
 	iter = res;
 	while (len-- > 0 && *(s + start))
@@ -59,10 +81,9 @@ char	*ft_strjoin_free_first(char *s1, char *s2)
 
 	len_s1 = -1;
 	len_s2 = 0;
-	if (!s1 || !s2)
-		return (NULL);
 	len = ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1;
-	if (!(res = malloc(len * sizeof(char))))
+	res = malloc(len * sizeof(char));
+	if (!res)
 	{
 		free(s1);
 		return (NULL);
